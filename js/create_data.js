@@ -3,6 +3,7 @@ $(document).ready(function () {
         e.preventDefault()
 
         // Obtén los valores de los campos de entrada
+        let ficha = $("#id_alumno").val()
         let nombre = $("#nombre_alumno").val()
         let apellido = $("#apellidos_alumno").val()
         let telefono = $("#telefono_alumno").val()
@@ -18,6 +19,7 @@ $(document).ready(function () {
 
         // Crea un objeto JavaScript con los datos
         let formDataAlumno = {
+            ficha: ficha,
             nombre: nombre,
             apellido: apellido,
             telefono: telefono,

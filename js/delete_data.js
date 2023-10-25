@@ -48,7 +48,7 @@ $(document).ready(function () {
                         success: function (response) {
                             swal.fire({
                                 position: 'center',
-                                // icon: 'success',
+                                icon: 'success',
                                 background: "#000",
                                 title: (response),
                                 showConfirmButton: false,

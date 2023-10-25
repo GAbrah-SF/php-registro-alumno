@@ -29,6 +29,10 @@
     <script src="js/delete_data.js"></script>
     <script src="js/update_data.js"></script>
 
+    <script src="js/verify_data/verify_ficha.js"></script>
+    <script src="js/verify_data/verify_phone.js"></script>
+    <script src="js/verify_data/verify_email.js"></script>
+
 </head>
 <body>
 <h1 class="mt-4 text-center">Lista de Alumnos Registrados</h1>
@@ -45,7 +49,7 @@
     <table class="table tabla_alumno">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Ficha</th>
             <th scope="col">Nombre(s)</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Teléfono</th>
@@ -83,72 +87,68 @@
             <div class="modal fade" id="modalUpdate_<?php echo $fila_alumno['id_alumno'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                  aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark text-light">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5 fw-bolder" id="staticBackdropLabel"><?php echo $fila_alumno['nombre_alumno'] ?> <?php echo $fila_alumno['apellido_alumno'] ?></h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close bg-danger xModal<?php echo $fila_alumno['id_alumno'] ?>" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="formAlumnoUpdate">
+                        <form action="">
                             <div class="modal-body">
                                 <input type="hidden" class="form-control" id="update_id_<?php echo $fila_alumno['id_alumno'] ?>" value="<?php echo $fila_alumno['id_alumno'] ?>">
 
                                 <div class="mb-3">
-                                    <label for="update_nombre_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">Nombre:</label>
+                                    <label for="update_nombre_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label fw-bold">Nombre:</label>
                                     <input type="text" class="form-control" id="update_nombre_<?php echo $fila_alumno['id_alumno'] ?>"
                                            value="<?php echo $fila_alumno['nombre_alumno'] ?>">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="update_apellido_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">Apellidos:</label>
+                                    <label for="update_apellido_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label fw-bold">Apellidos:</label>
                                     <input type="text" class="form-control" id="update_apellido_<?php echo $fila_alumno['id_alumno'] ?>"
                                            value="<?php echo $fila_alumno['apellido_alumno'] ?>">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="update_telefono_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">Teléfono/Celular:</label>
+                                    <label for="update_telefono_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label fw-bold">Teléfono/Celular:</label>
                                     <input type="email" class="form-control field_only_numbers" id="update_telefono_<?php echo $fila_alumno['id_alumno'] ?>"
                                            value="<?php echo $fila_alumno['telefono_alumno'] ?>"
                                            minlength="10" maxlength="10">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="update_email_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">E-mail:</label>
+                                    <label for="update_email_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label fw-bold">E-mail:</label>
                                     <input type="email" class="form-control" id="update_email_<?php echo $fila_alumno['id_alumno'] ?>" value="<?php echo $fila_alumno['email_alumno'] ?>">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Materias:</label>
+                                    <label class="form-label fw-bold">Materias:</label>
                                     <div class="row justify-content-start">
                                         <div class="col-6">
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_1_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Teorías de aprendizaje">
-                                                <label class="form-check-label" for="materiaUpdate_1_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Teorías de aprendizaje.
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_2_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Filosofía de la educación">
-                                                <label class="form-check-label" for="materiaUpdate_2_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Filosofía de la educación.
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_3_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Estrategias de aprendizaje">
-                                                <label class="form-check-label" for="materiaUpdate_3_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Estrategias de aprendizaje.
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_4_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Comunicación educativa">
-                                                <label class="form-check-label" for="materiaUpdate_4_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Comunicación educativa.
                                                 </label>
                                             </div>
@@ -157,33 +157,29 @@
                                         <div class="col-6">
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_5_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Metodologías para la enseñanza">
-                                                <label class="form-check-label" for="materiaUpdate_5_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Metodologías para la enseñanza.
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_6_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Teoría y desarrollo curricular">
-                                                <label class="form-check-label" for="materiaUpdate_6_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Teoría y desarrollo curricular.
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_7_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Evaluación del aprendizaje">
-                                                <label class="form-check-label" for="materiaUpdate_7_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Evaluación del aprendizaje.
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
-                                                       id="materiaUpdate_8_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Diseño de programas de enseñanza">
-                                                <label class="form-check-label" for="materiaUpdate_8_<?php echo $fila_alumno['id_alumno'] ?>">
+                                                <label class="form-check-label labelMateriaUpdate_<?php echo $fila_alumno['id_alumno'] ?>">
                                                     Diseño de programas de enseñanza.
                                                 </label>
                                             </div>
@@ -192,8 +188,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger close_modal_update" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success" id="update_data_<?php echo $fila_alumno['id_alumno'] ?>">Actualizar</button>
+                                <button type="button" class="btn btn-danger closeModalUpdate_<?php echo $fila_alumno['id_alumno'] ?>" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-success updateData_<?php echo $fila_alumno['id_alumno'] ?>">Actualizar</button>
                             </div>
                         </form>
                     </div>
@@ -208,36 +204,50 @@
 <div class="modal fade" id="modalFormAlumno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content bg-dark text-light">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Datos del Alumno</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close bg-danger close_modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="formAlumno">
+            <form action="">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nombre_alumno" class="form-label">Nombre:</label>
+                        <label for="id_alumno" class="form-label fw-bold">Ficha:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control field_only_numbers" id="id_alumno" minlength="1" maxlength="4" placeholder="" aria-label="" aria-describedby="verificar_id">
+                            <button class="btn btn-info" type="button" id="verificar_id">Verificar</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_alumno" class="form-label fw-bold">Nombre:</label>
                         <input type="text" class="form-control" id="nombre_alumno">
                     </div>
 
                     <div class="mb-3">
-                        <label for="apellidos_alumno" class="form-label">Apellidos:</label>
+                        <label for="apellidos_alumno" class="form-label fw-bold">Apellidos:</label>
                         <input type="text" class="form-control" id="apellidos_alumno">
                     </div>
 
                     <div class="mb-3">
-                        <label for="telefono_alumno" class="form-label">Tel/Cel:</label>
-                        <input type="email" class="form-control field_only_numbers" id="telefono_alumno" minlength="10"
-                               maxlength="10">
+                        <label for="telefono_alumno" class="form-label fw-bold">Tel/Cel:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control field_only_numbers" id="telefono_alumno"
+                                   minlength="10" maxlength="10" placeholder="" aria-label="" aria-describedby="verificar_telefono">
+                            <button class="btn btn-info" type="button" id="verificar_telefono">Verificar</button>
+                        </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="email_alumno" class="form-label">E-mail:</label>
-                        <input type="email" class="form-control" id="email_alumno">
+                        <label for="email_alumno" class="form-label fw-bold">E-mail:</label>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" id="email_alumno" placeholder="" aria-label="" aria-describedby="verificar_email">
+                            <button class="btn btn-info" type="button" id="verificar_email">Verificar</button>
+                        </div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Materias:</label>
+                        <label class="form-label fw-bold">Materias:</label>
                         <div class="row justify-content-start">
                             <div class="col-6">
                                 <div class="form-check">
