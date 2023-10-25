@@ -76,7 +76,7 @@
                             data-bs-toggle="modal" data-bs-target="#modalUpdate_<?php echo $fila_alumno['id_alumno'] ?>"
                             title="Actualizar datos de <?php echo $fila_alumno['nombre_alumno'] ?> <?php echo $fila_alumno['apellido_alumno'] ?>"
                             id="update<?php echo $fila_alumno['id_alumno'] ?>">
-                        <i class="bi bi-archive"></i></button>
+                        <i class="bi bi-pencil-square"></i></button>
                     <button type="button" class="btn btn-danger delete_data" id="eliminar<?php echo $fila_alumno['id_alumno'] ?>"
                             title="Eliminar a <?php echo $fila_alumno['id_alumno'] ?>">
                         <i class="bi bi-trash"></i></button>
