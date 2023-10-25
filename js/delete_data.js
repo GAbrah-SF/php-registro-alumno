@@ -53,14 +53,16 @@ $(document).ready(function () {
                                 title: (response),
                                 showConfirmButton: false,
                                 timer: 2500
-                            })
+                            }).then(
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000) // 2000 milisegundos (2 segundos)
+                            )
                         },
                     })
                 }
             })
-            setTimeout(function() {
-                location.reload();
-            }, 2000) // 2000 milisegundos (2 segundos)
+
         })
     }
 })

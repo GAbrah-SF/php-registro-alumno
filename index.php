@@ -67,11 +67,11 @@
                 <td class="align-middle"><?php echo $fila_alumno['telefono_alumno'] ?></td>
                 <td class="align-middle"><?php echo $fila_alumno['email_alumno'] ?></td>
                 <td class="align-middle show_materias" id="materias<?php echo $fila_alumno['id_alumno'] ?>"><?php echo $fila_alumno['materia_alumno'] ?></td>
-                <td>
+                <td class="align-middle">
                     <button type="button" class="btn btn-info show_modal_update"
                             data-bs-toggle="modal" data-bs-target="#modalUpdate_<?php echo $fila_alumno['id_alumno'] ?>"
                             title="Actualizar datos de <?php echo $fila_alumno['nombre_alumno'] ?> <?php echo $fila_alumno['apellido_alumno'] ?>"
-                            id="<?php echo $fila_alumno['id_alumno'] ?>">
+                            id="update<?php echo $fila_alumno['id_alumno'] ?>">
                         <i class="bi bi-archive"></i></button>
                     <button type="button" class="btn btn-danger delete_data" id="eliminar<?php echo $fila_alumno['id_alumno'] ?>"
                             title="Eliminar a <?php echo $fila_alumno['id_alumno'] ?>">
@@ -93,28 +93,27 @@
                                 <input type="hidden" class="form-control" id="update_id_<?php echo $fila_alumno['id_alumno'] ?>" value="<?php echo $fila_alumno['id_alumno'] ?>">
 
                                 <div class="mb-3">
-                                    <label for="update_nombre" class="form-label">Nombre:</label>
+                                    <label for="update_nombre_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="update_nombre_<?php echo $fila_alumno['id_alumno'] ?>"
                                            value="<?php echo $fila_alumno['nombre_alumno'] ?>">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="update_apellido" class="form-label">Apellidos:</label>
+                                    <label for="update_apellido_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">Apellidos:</label>
                                     <input type="text" class="form-control" id="update_apellido_<?php echo $fila_alumno['id_alumno'] ?>"
                                            value="<?php echo $fila_alumno['apellido_alumno'] ?>">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="update_telefono" class="form-label">Teléfono/Celular:</label>
+                                    <label for="update_telefono_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">Teléfono/Celular:</label>
                                     <input type="email" class="form-control field_only_numbers" id="update_telefono_<?php echo $fila_alumno['id_alumno'] ?>"
                                            value="<?php echo $fila_alumno['telefono_alumno'] ?>"
                                            minlength="10" maxlength="10">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="update_email" class="form-label">E-mail:</label>
-                                    <input type="email" class="form-control" id="update_email_<?php echo $fila_alumno['id_alumno'] ?>"
-                                    value="<?php echo $fila_alumno['email_alumno'] ?>">
+                                    <label for="update_email_<?php echo $fila_alumno['id_alumno'] ?>" class="form-label">E-mail:</label>
+                                    <input type="email" class="form-control" id="update_email_<?php echo $fila_alumno['id_alumno'] ?>" value="<?php echo $fila_alumno['email_alumno'] ?>">
                                 </div>
 
                                 <div class="mb-3">
@@ -122,7 +121,7 @@
                                     <div class="row justify-content-start">
                                         <div class="col-6">
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_1_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Teorías de aprendizaje">
                                                 <label class="form-check-label" for="materiaUpdate_1_<?php echo $fila_alumno['id_alumno'] ?>">
@@ -130,7 +129,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_2_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Filosofía de la educación">
                                                 <label class="form-check-label" for="materiaUpdate_2_<?php echo $fila_alumno['id_alumno'] ?>">
@@ -138,7 +137,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_3_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Estrategias de aprendizaje">
                                                 <label class="form-check-label" for="materiaUpdate_3_<?php echo $fila_alumno['id_alumno'] ?>">
@@ -146,7 +145,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_4_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Comunicación educativa">
                                                 <label class="form-check-label" for="materiaUpdate_4_<?php echo $fila_alumno['id_alumno'] ?>">
@@ -157,7 +156,7 @@
 
                                         <div class="col-6">
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_5_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Metodologías para la enseñanza">
                                                 <label class="form-check-label" for="materiaUpdate_5_<?php echo $fila_alumno['id_alumno'] ?>">
@@ -165,7 +164,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_6_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Teoría y desarrollo curricular">
                                                 <label class="form-check-label" for="materiaUpdate_6_<?php echo $fila_alumno['id_alumno'] ?>">
@@ -173,7 +172,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_7_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Evaluación del aprendizaje">
                                                 <label class="form-check-label" for="materiaUpdate_7_<?php echo $fila_alumno['id_alumno'] ?>">
@@ -181,7 +180,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input materia_update"
+                                                <input class="form-check-input materia_update_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        id="materiaUpdate_8_<?php echo $fila_alumno['id_alumno'] ?>"
                                                        type="checkbox" value="Diseño de programas de enseñanza">
                                                 <label class="form-check-label" for="materiaUpdate_8_<?php echo $fila_alumno['id_alumno'] ?>">

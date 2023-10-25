@@ -7,11 +7,10 @@ $(document).ready(function () {
 
     for (let i = 0; i < id_update.length; i++) {
         let boton_actualizar = $(`#${id_update[i]}`)
+        let textMateriaID = id_update[i].replace("update", "")
 
         boton_actualizar.on("click", function () {
-            // console.log(`#materias${id_update[i]}`)
-
-            let id_materia = $(`#materias${id_update[i]}`)
+            let id_materia = $(`#materias${textMateriaID}`)
 
             // Obten el contenido de la celda
             let contenido = id_materia.text()
@@ -22,31 +21,44 @@ $(document).ready(function () {
                 return elemento !== ""
             })
 
-            // Itera a través de cada casilla de verificación con la clase "miCheckbox"
-            // $(".materia_update").each(function () {
-            //     let valorCasilla = $(this).val()
-            //     let estaMarcada = arrayMaterias.includes(valorCasilla)
-            //
-            //     $(this).prop('checked', estaMarcada)
-            // })
+            // Itera a través de cada casilla de verificación con la clase "materia_update"
+            $(`.materia_update_${textMateriaID}`).each(function () {
+                let valorCasilla = $(this).val()
+                let estaMarcada = arrayMaterias.includes(valorCasilla)
+
+                $(this).prop('checked', estaMarcada)
+            })
             // console.log(arrayMaterias)
         })
 
-        $(`#update_data_${id_update[i]}`).on("click", function () {
+        // Evento para actualizar la lista de materias al momento de dar click en cada check de las materias
+        $(`.materia_update_${textMateriaID}`).on("click", function () {
+            // Limpia el array de valores seleccionados
+            arrayMaterias = []
+
+            // Itera sobre las casillas de verificación marcadas
+            $(`.materia_update_${textMateriaID}:checked`).each(function () {
+                // Agrega el valor de la casilla marcada al array
+                arrayMaterias.push($(this).val());
+            })
+            // console.log(arrayMaterias)
+        })
+
+        $(`#update_data_${textMateriaID}`).on("click", function () {
+            // Obtén los valores de los campos de entrada
+            let id_nombre = $(`#update_id_${textMateriaID}`).val()
+            let update_nombre = $(`#update_nombre_${textMateriaID}`).val()
+            let update_apellido = $(`#update_apellido_${textMateriaID}`).val()
+            let update_telefono = $(`#update_telefono_${textMateriaID}`).val()
+            let update_email = $(`#update_email_${textMateriaID}`).val()
+
             // Selecciona todos los elementos con la clase "materia_update" que estén marcados
-            arrayMaterias = $('.materia_update:checked').map(function () {
+            arrayMaterias = $(`.materia_update_${textMateriaID}:checked`).map(function () {
                 return this.value
             }).get()
 
             let arrayUpdateMaterias = arrayMaterias.join(', ') // Une los elementos con comas y espacio
             // console.log(arrayUpdateMaterias)
-
-            // // Obtén los valores de los campos de entrada
-            let id_nombre = $(`#update_id_${id_update[i]}`).val()
-            let update_nombre = $(`#update_nombre_${id_update[i]}`).val()
-            let update_apellido = $(`#update_apellido_${id_update[i]}`).val()
-            let update_telefono = $(`#update_telefono_${id_update[i]}`).val()
-            let update_email = $(`#update_email_${id_update[i]}`).val()
 
             // Crea un objeto JavaScript con los datos
             let formUpdateDataAlumno = {
@@ -92,9 +104,4 @@ $(document).ready(function () {
             }, 2000) // 2000 milisegundos (2 segundos)
         })
     }
-
-    $(".close_modal_update").on("click", function () {
-        $('.materia_update').prop('checked', false)
-    })
-
 })

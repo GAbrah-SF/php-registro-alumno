@@ -13,7 +13,7 @@ $(document).ready(function () {
         // Divide el contenido en dos líneas
         let lineas = contenido.split(', ')
 
-        if (lineas.length > 1) {
+        if (lineas.length > 0) {
             // Crea un nuevo contenido con un salto de línea
             let nuevoContenido = lineas.join('.<br>') + '.'
 
