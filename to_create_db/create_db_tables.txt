@@ -1,0 +1,18 @@
+CREATE DATABASE lista_alumno;
+
+USE lista_alumno;
+
+CREATE TABLE `alumno` (
+  `id_alumno` int(4) NOT NULL,
+  `nombre_alumno` varchar(40) NOT NULL,
+  `apellido_alumno` varchar(70) NOT NULL,
+  `telefono_alumno` varchar(10) NOT NULL,
+  `email_alumno` varchar(50) NOT NULL,
+  `materia_alumno` text DEFAULT NULL
+);
+
+CREATE TABLE `materia` (
+  `id_materia` int(4) NOT NULL,
+  `nombre_materia` varchar(30) NOT NULL
+);
+

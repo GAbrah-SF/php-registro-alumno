@@ -14,7 +14,7 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 type: "POST",
-                url: "php/verify_data/verify_materia.php",
+                url: "php/add_materia/verify_materia.php",
                 data: {materia: nombre_materia},
                 success: function (respuesta) {
                     if (respuesta === "Materia registrada") {
@@ -22,7 +22,7 @@ $(document).ready(function () {
                             background: "#000",
                             position: 'center',
                             icon: 'error',
-                            title: `Materia registrada`,
+                            title: `MATERIA NO DISPONIBLE`,
                             showConfirmButton: false,
                             timer: 2000
                         })
@@ -32,7 +32,7 @@ $(document).ready(function () {
                             background: "#000",
                             position: 'center',
                             icon: 'success',
-                            title: `Materia no registrada`,
+                            title: `MATERIA DISPONIBLE`,
                             showConfirmButton: false,
                             timer: 2000
                         })

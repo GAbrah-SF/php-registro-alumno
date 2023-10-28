@@ -1,7 +1,20 @@
-/*.form-check-label {*/
-/*    font-size: 13px;*/
-/*}*/
-
 .swal2-title {
     font-size: 25px;
+}
+
+.tabla-materias-form-select {
+    width: 15%;
+}
+
+.tabla-materias-form-input {
+    width: 45%;
+}
+
+#tablaMaterias_length, #tablaMaterias_filter, #tablaMaterias_info {
+    display: none;
+}
+
+#tablaMaterias_paginate {
+    float: initial;
+    text-align: center;
 }

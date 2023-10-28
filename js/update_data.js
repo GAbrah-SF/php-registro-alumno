@@ -26,8 +26,12 @@ $(document).ready(function () {
                 let uniqueId = `materiaUpdate_${index + 1}` // Generar un ID único
                 $(this).attr({'id': uniqueId}) // Agrega el atributo 'id' con el valor generado
                 $(this).next('label').attr({'for': uniqueId}) // Asocia la etiqueta con el checkbox usando el atributo 'for'
-            })
 
+                if ($(`#${uniqueId}`).val() === materiaNoActualizada) {
+                    this.value = materiaActualizada
+                    $(`label[for='${uniqueId}']`).html(`${materiaActualizada}.`)
+                }
+            })
         })
 
         // Evento para actualizar la lista de materias al momento de dar click en cada check de las materias

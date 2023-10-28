@@ -9,16 +9,12 @@
 
     <script src="js/jquery-3.7.1.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <link href="css/estilos.css" rel="stylesheet">
 
@@ -33,80 +29,107 @@
     <script src="js/verify_data/verify_phone.js"></script>
     <script src="js/verify_data/verify_email.js"></script>
 
-<!--    <script src="js/add_materia.js"></script>-->
-<!--    <script src="js/verify_data/verify_materia.js"></script>-->
-<!--    <script src="js/update_materia.js"></script>-->
-<!--    <script src="js/delete_materia.js"></script>-->
+    <script src="js/add_materia/create_materia.js"></script>
+    <script src="js/add_materia/verify_materia.js"></script>
+    <script src="js/add_materia/update_materia.js"></script>
+    <script src="js/add_materia/delete_materia.js"></script>
 
 </head>
 <body>
-<h1 class="mt-4 text-center">Lista de Alumnos Registrados</h1>
+<h1 class="mt-4 text-center fw-bold fst-italic">Lista de Alumnos Registrados</h1>
 
 <div class="container">
     <div class="mt-5 text-center">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormAlumno">Nuevo Alumno</button>
-<!--        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalFormMateria">Nueva Materia</button>-->
+        <button type="button" class="btn btn-info modalFormMateria" data-bs-toggle="modal" data-bs-target="#modalFormMateria">Nueva Materia</button>
+        <button type="button" class="btn d-none listaMateriaDirecta" data-bs-toggle="modal" data-bs-target="#modalMaterias">Botón Invisible</button>
     </div>
 
     <!-- Modal para Registrar una Materia-->
-<!--    <div class="modal fade" id="modalFormMateria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog modal-dialog-centered">-->
-<!--            <div class="modal-content bg-dark text-light">-->
-<!--                <div class="modal-header">-->
-<!--                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Datos de la Materia</h1>-->
-<!--                    <button type="button" class="btn-close bg-danger closeModalMateria" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                </div>-->
-<!--                <form action="">-->
-<!--                    <div class="modal-body">-->
-<!--                        <div class="mb-3">-->
-<!--                            <label for="id_alumno" class="form-label fw-bold">Nombre de la materia:</label>-->
-<!--                            <div class="mb-3">-->
-<!--                                <input type="text" class="form-control form-add-materia mb-2" id="nombre_materia" placeholder="" aria-label="" aria-describedby="verificar_materia">-->
-<!--                                <a data-bs-dismiss="modal" class="text-light listaMateria" data-bs-toggle="modal" data-bs-target="#modalMaterias" style="cursor:pointer;">-->
-<!--                                    <i class="bi bi-card-list" title="Ver lista de materias registradas"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="modal-footer">-->
-<!--                        <button type="button" class="btn btn-info" id="verificar_materia">Verificar</button>-->
-<!--                        <button type="button" class="btn btn-danger closeModalMateria" data-bs-dismiss="modal">Cancelar</button>-->
-<!--                        <button type="button" class="btn btn-success saveDataMateria">Registrar</button>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="modal fade" id="modalFormMateria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Registrar Materia</h1>
+                    <button type="button" class="btn-close bg-danger closeModalMateria" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="id_alumno" class="form-label fw-bold fs-5">Nombre de la materia:</label>
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-add-materia mb-2 text-center" id="nombre_materia" placeholder="" aria-label="" aria-describedby="verificar_materia">
+                                <a data-bs-dismiss="modal" class="text-light listaMateria" data-bs-toggle="modal" data-bs-target="#modalMaterias" style="cursor:pointer;">
+                                    <i class="bi bi-card-list" title="Ver lista de materias registradas"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" id="verificar_materia"><i class="bi bi-info-square-fill"></i></button>
+                        <button type="button" class="btn btn-danger closeModalMateria" data-bs-dismiss="modal"><i class="bi bi-x-square"></i></button>
+                        <button type="button" class="btn btn-success saveDataMateria"><i class="bi bi-floppy2"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal para Listar las Materias-->
-<!--    <div class="modal fade" id="modalMaterias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog modal-dialog-centered">-->
-<!--            <div class="modal-content bg-dark text-light">-->
-<!--                <div class="modal-header">-->
-<!--                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Materias registradas</h1>-->
-<!--                    <button type="button" class="btn-close bg-danger closeListaMateria" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    <div class="mb-3">-->
-<!--                        --><?php
-//                        $checks_materias = "SELECT * FROM materia";
-//                        $response_materia = mysqli_query($conexion, $checks_materias);
-//                        while ($fila_materia = $response_materia->fetch_assoc()) { ?>
-<!--                            <div class="row align-items-center pb-1 pt-1">-->
-<!--                                <div class="col-9">-->
-<!--                                    <h5 id="Materia_--><?php //echo $fila_materia['id_materia'] ?><!--" class="">--><?php //echo $fila_materia['nombre_materia'] ?><!--.</h5>-->
-<!--                                </div>-->
-<!--                                <div class="col-3">-->
-<!--                                    <button id="editarMateria_--><?php //echo $fila_materia['id_materia'] ?><!--" type="button" class="btn btn-info editarMateria"><i class="bi bi-pencil-square"></i></button>-->
-<!--                                    <button id="eliminarMateria_--><?php //echo $fila_materia['id_materia'] ?><!--" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        --><?php //} ?>
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="modal fade" id="modalMaterias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="materiasRegistradasH1">Materias registradas</h1>
+                    <button type="button" class="btn-close bg-danger closeListaMateria" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-1">
+                        <div class="row">
+                            <div class="mb-5 col-md-12 text-end" id="searchMateria"></div>
+                            <div class="col-md-12 text-start" id="selectMaterias"></div>
+                        </div>
+                    </div>
+                    <div class="mt-3 mb-3">
+                        <table id="tablaMaterias" class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="fs-5">Materia</th>
+                                    <th scope="col" class="align-middle text-center fs-5">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $checks_materias = "SELECT * FROM materia";
+                                $response_materia = mysqli_query($conexion, $checks_materias);
+                                while ($fila_materia = $response_materia->fetch_assoc()) { ?>
+                                    <tr>
+                                        <td class="align-middle" scope="row">
+                                            <h5 id="Materia_<?php echo $fila_materia['id_materia'] ?>" class=""><?php echo $fila_materia['nombre_materia'] ?>.</h5>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <button id="editarMateria_<?php echo $fila_materia['id_materia'] ?>" type="button" class="btn btn-info editarMateria editarMateria_<?php echo $fila_materia['id_materia'] ?>"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="btn btn-danger eliminarMateria_<?php echo $fila_materia['id_materia'] ?>" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row col-md-12">
+                        <div class="col-md-6 text-left d-flex align-items-center">
+                            <h6 id="paginación" class="">Paginación</h6>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button type="button" class="btn btn-danger regresarFormMateria" data-bs-dismiss="modal">Regresar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <h5 class="mt-3 mb-3">Consulta de alumnos registrados con las materias que tienen asignadas:</h5>
     <table class="table tabla_alumno">
@@ -145,7 +168,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content bg-dark text-light">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5 fw-bolder" id="staticBackdropLabel"><?php echo $fila_alumno['nombre_alumno'] ?><?php echo $fila_alumno['apellido_alumno'] ?></h1>
+                            <h1 class="modal-title fs-5 fw-bolder" id="staticBackdropLabel"><?php echo $fila_alumno['nombre_alumno'] ?> <?php echo $fila_alumno['apellido_alumno'] ?></h1>
                             <button type="button" class="btn-close bg-danger xModal<?php echo $fila_alumno['id_alumno'] ?>" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form action="">
@@ -274,5 +297,6 @@
         </div>
     </div>
 </div>
+<script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

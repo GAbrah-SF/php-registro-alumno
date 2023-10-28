@@ -8,7 +8,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "php/add_materia.php",
+            url: "php/add_materia/create_materia.php",
             data: formDataMateria,
             success: function (response) {
                 swal.fire({

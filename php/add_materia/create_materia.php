@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require "conexion.php";
+    require "../conexion.php";
 
     $materia = $_POST["materia"];
 
